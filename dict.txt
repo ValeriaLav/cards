@@ -1,0 +1,71 @@
+dependency - зависимость
+resolver : преобразователь
+currently - в настоящее время 
+behaviour - поведение , отношение
+incompatible - несовместимый
+alignment - выравнивание, согласование
+resample - повторная выборка
+sample - образец
+Convenience (конвиниенс)- удобство
+frequency(фриквенси) - частота
+feature - особенность
+offset - смещение, сдвиг
+represent - представлять
+unused- неиспользованный
+except- кроме
+Pass - проходить, пропуск
+retain - сохранять
+dedicated - выделенный, посвященный
+Assign - Назначать
+Capture - Захватывать
+Conduct - Вести, проводить
+Configure - Настроить
+Deploy – Развертывать  
+Detect - Обнаруживать
+Enable – Включать, Запускать в работу
+Establish – Учреждать, устанавливать  
+Evaluate – Оценивать  
+Execute - Выполнять  
+Extract - Извлекать  
+Facilitate – Облегчать
+Identify – Распознавать  
+Implement - Внедрять  
+Initiate – Запускать, приводить в действие
+Locate – Находить, определять место  
+Maintain – Поддерживать  
+Manage - Управлять  
+Measure - Измерять  
+Merge - Объединять  
+Move – Перемещать  
+Override – Переопределять, отменять  
+Oversee – Надзирать, контролировать  
+Overwrite - Перезаписывать
+Perform – Выполнять, совершать
+Provide – Обеспечивать  
+Query - Запрашивать
+Reconfigure - Перенастраивать  
+Recover – Восстанавливать  
+Redirect - Перенаправлять  
+Refresh - Обновлять  
+Remove – Перемещать, убирать
+Report – Описывать, отчитываться
+Resolve – Решать, разрешать (сомнения)  
+Restore - Восстанавливать  
+Retrieve - Извлекать  
+Review – Проверять, рецензировать
+Schedule – Назначать, планировать
+Set up – Устанавливать
+Store - Хранить  
+Stream - Потоково передавать  
+Streamline - Оптимизировать  
+Trace - Отслеживать  
+Transfer – Передавать, переносить  
+Transmit - Передавать  
+Troubleshoot - Устранять неполадки
+Unlock – Открыть  
+Unmerge - Разъединять  
+Unmount - Демонтировать  
+Unzip - Распаковывать
+Utilize – Использовать, употреблять  
+Validate - Проверять  
+Verify - Проверять достоверность
