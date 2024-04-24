@@ -6,13 +6,16 @@ con = sqlite3.connect("dict.db")
 cursor = con.cursor()
 
 try:
-    cursor.execute("""CREATE TABLE words
-                (id INTEGER PRIMARY KEY AUTOINCREMENT,  
-                foreign_word VARCHAR(255), 
+    cursor.execute("""CREATE TABLE IF NOT EXISTS words
+                (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                foreign_word VARCHAR(255),
                 russian_word VARCHAR(255),
                 level_word VARCHAR(255),
                 group_word VARCHAR(255) )
             """)
+
+# try :
+#     cursor.execute("""drop  TABLE words""")
 
 except Exception as e:
     print(e)
