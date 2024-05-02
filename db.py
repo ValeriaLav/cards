@@ -25,7 +25,6 @@ with open('test.txt', 'r', encoding='UTF-8') as file:
 
 for line in lines:
     data = line.strip().split(',')
-    print(data)
     cursor.execute('''
         INSERT INTO words (foreign_word, russian_word, level_word, group_word)
         VALUES (?, ?, ?, ?)

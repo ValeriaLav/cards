@@ -1,14 +1,19 @@
 import tkinter as tk
 import sqlite3
 from tkinter.messagebox import showwarning
-
+from random import randint
+#pyinstaller --onefile --add-data "dict.db;." main.py
 
 class MainWindow:
 
     def __init__(self, master):
         self.master = master
         self.currentindex = 1
+        self.amount_str = self.get_amount_str()
         self.couple_words = self.get_words()
+        self.mode = 0 # 0 - по порядку, 1- перемешано
+
+
 
     def CreateInsertWindow(self):
 
@@ -62,21 +67,39 @@ class MainWindow:
         self.btn_insert = tk.Button(self.master, text="Добавить слова", command=self.CreateInsertWindow)
         self.btn_insert.place(relx=0.8, rely=0.1)
 
+        self.btn_mix = tk.Button(self.master, text="Перемешать слова", command=self.mix_words)
+        self.btn_mix.place(relx=0.05, rely=0.1, anchor=tk.W)
+
+        self.btn_mix = tk.Button(self.master, text="Упорядочить слова", command=self.regularize_words)
+        self.btn_mix.place(relx=0.05, rely=0.25, anchor=tk.W)
+
+    def mix_words(self):
+        self.mode = 1
+
+    def regularize_words(self):
+        self.mode = 0
 
 
     def prev_word(self):
+        self.curr_couple = self.get_words()
         self.currentindex -= 1
         self.couple_words = self.get_words()
-        self.text_label.config(text=self.couple_words[0])
+        self.curr_text = self.text_label.cget("text")
+        self.text_label.config(text=self.couple_words[1] if self.curr_text == self.curr_couple[1] else self.couple_words[0])
 
     def replace_word(self):
         self.curr_text = self.text_label.cget("text")
         self.text_label.config(text=self.couple_words[1] if self.curr_text == self.couple_words[0] else self.couple_words[0])
 
     def next_word(self):
-        self.currentindex += 1
+        self.curr_couple = self.get_words()
+        if self.mode == 1:
+            self.currentindex = randint(0, self.amount_str)
+        else:
+            self.currentindex += 1
         self.couple_words = self.get_words()
-        self.text_label.config(text=self.couple_words[0])
+        self.curr_text = self.text_label.cget("text")
+        self.text_label.config(text=self.couple_words[1] if self.curr_text == self.curr_couple[1] else self.couple_words[0])
 
     def get_words(self):
         if self.currentindex <= 0:
@@ -84,19 +107,19 @@ class MainWindow:
         conn = sqlite3.connect("dict.db")
         cursor = conn.cursor()
         try:
-            get_count = """ SELECT COUNT(*) FROM WORDS"""
-            cursor.execute(get_count)
-            amount_str = cursor.fetchone()
-            if self.currentindex > amount_str[0]:
-                self.currentindex = amount_str[0]
+            # get_count = """ SELECT COUNT(*) FROM WORDS"""
+            # cursor.execute(get_count)
+            # self.amount_str = cursor.fetchone()
+            if self.currentindex > self.amount_str:
+                self.currentindex = self.amount_str
             query = f"""SELECT foreign_word , russian_word FROM WORDS where ID = {self.currentindex}"""
             cursor.execute(query)
-            couple_words = cursor.fetchone()
+            c_words = cursor.fetchone()
         except Exception as e:
             print("Ошибка ", e)
         cursor.close()
         conn.close()
-        return couple_words
+        return c_words
 
     def insert_words(self):
         self.rusn_word = self.entr_russian_word.get()
@@ -129,6 +152,18 @@ class MainWindow:
         conn.commit()
         cursor.close()
         conn.close()
+    def get_amount_str(self):
+        conn = sqlite3.connect("dict.db")
+        cursor = conn.cursor()
+        try:
+            get_count = """ SELECT COUNT(*) FROM WORDS"""
+            cursor.execute(get_count)
+            amount_str = cursor.fetchone()
+        except Exception as e:
+            print("Ошибка ", e)
+        cursor.close()
+        conn.close()
+        return amount_str[0]
 
 
 
